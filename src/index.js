@@ -63,15 +63,17 @@ async function checkEventsListForConnectedEvent(context, github){
     issue_number: context.payload.pull_request.number 
   });
 
+  let hasConnectedEvents = false;
   if(pull.data){
+    log.debug(`Checking events: ${pull.data}`)
     pull.data.forEach(item => {
       if (item.event == "connected"){
         core.debug(`Found connected event.`);
-        return true;
+        hasConnectedEvents = true;
       }
     });
   }
-  return false;
+  return hasConnectedEvents;
 }
 
 async function createMissingIssueComment(context,github ) {
