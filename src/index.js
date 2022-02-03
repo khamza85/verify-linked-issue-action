@@ -65,7 +65,7 @@ async function checkEventsListForConnectedEvent(context, github){
 
   let hasConnectedEvents = false;
   if(pull.data){
-    log.debug(`Checking events: ${pull.data}`)
+    core.debug(`Checking events: ${pull.data}`);
     pull.data.forEach(item => {
       if (item.event == "connected"){
         core.debug(`Found connected event.`);
